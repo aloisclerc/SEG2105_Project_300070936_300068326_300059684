@@ -3,7 +3,9 @@ package com.example.projectseg2105;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button register;
     private Button login;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 openLogin();
             }
         });
+
+
 
     }
 
