@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText password;
     private Button register;
     private Spinner type;
+    private EditText firstName;
 
 
     @Override
@@ -42,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         type.setAdapter(adapter);
 
+        firstName = findViewById(R.id.firstName);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -69,6 +73,24 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    final String userEmail = user.getEmail();
+
+
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(firstName.getText().toString()).build();
+
+                    user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(RegisterActivity.this, userEmail, Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    });;
+
                     Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                     finish();
