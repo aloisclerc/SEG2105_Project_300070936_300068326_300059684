@@ -3,6 +3,7 @@ package com.example.projectseg2105;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -62,6 +63,8 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                    finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, "Account Creation Failed", Toast.LENGTH_SHORT).show();
                 }
