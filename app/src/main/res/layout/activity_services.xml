@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ServicesActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="200dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginRight="200dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/servicesText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Services"
+            android:textSize="36sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="286dp" />
+
+        <Button
+            android:id="@+id/driversLicenseBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Driver's License" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="46dp" />
+
+        <Button
+            android:id="@+id/healthCardBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Health Card" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="46dp" />
+
+        <Button
+            android:id="@+id/photoIdBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Photo ID" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
