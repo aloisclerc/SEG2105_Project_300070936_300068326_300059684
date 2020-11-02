@@ -66,10 +66,11 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
-                            if (document.get("type") == "Admin") {
+                            if (document.get("type").toString().equals("Admin")) {
                                 startActivity(new Intent(LoginActivity.this, AdminActivity.class));
                                 finish();
                             } else {
+                                Toast.makeText( LoginActivity.this, document.get("type").toString(), Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                 finish();
                             }

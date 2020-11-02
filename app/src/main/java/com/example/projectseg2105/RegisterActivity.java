@@ -112,9 +112,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                     Map<String, Object> storeUser = new HashMap<>();
                     storeUser.put("email", email);
-                    storeUser.put("first", type);
-                    storeUser.put("last", first);
-                    storeUser.put("type", last);
+                    storeUser.put("type", type);
+                    storeUser.put("first", first);
+                    storeUser.put("last", last);
 
                     users.document(email).set(storeUser);
 
@@ -124,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot document = task.getResult();
-                                if (document.get("type") == "Admin") {
+                                if (document.get("type").toString().equals("Admin")) {
                                     startActivity(new Intent(RegisterActivity.this, AdminActivity.class));
                                     finish();
                                 } else {
