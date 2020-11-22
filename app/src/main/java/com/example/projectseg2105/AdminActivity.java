@@ -1,6 +1,7 @@
 package com.example.projectseg2105;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,30 +11,43 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ExpandableListAdapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class AdminActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity implements AddServiceDialog.AddServiceDialogListener {
     private static final String TAG = "AdminActivity";
 
     private ArrayList<String> mServices = new ArrayList<>();
-    private ArrayList<String> mDocuments = new ArrayList<>();
+    private ArrayList<Boolean> mDriversLicenses = new ArrayList<>();
+    private ArrayList<Boolean> mHealthCards = new ArrayList<>();
+    private ArrayList<Boolean> mPhotoIDs = new ArrayList<>();
+
+    private RecyclerView recyclerView;
+    private ServiceViewAdapter adapter;
 
     private Button userPage;
+    private Button addService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
-        userPage = (Button) findViewById(R.id.userPage);
+        userPage = findViewById(R.id.userPage);
+        addService = findViewById(R.id.addService);
 
         userPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +55,18 @@ public class AdminActivity extends AppCompatActivity {
                 openUsers();
             }
         });
+        addService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addService();
+            }
+        });
         initServices();
+    }
+
+    public void addService(){
+        AddServiceDialog exampleDialog = new AddServiceDialog();
+        exampleDialog.show(getSupportFragmentManager(), "add service dialog");
     }
 
     public void openUsers(){
@@ -60,11 +85,14 @@ public class AdminActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String tempService = document.get("service").toString();
-                        String tempDocument = document.get("documents").toString();
+                        Boolean tempDrivers = (Boolean) document.get("driversLicense");
+                        Boolean tempHealth = (Boolean) document.get("healthCard");
+                        Boolean tempPhoto = (Boolean) document.get("photoID");
                         mServices.add(tempService);
-                        mDocuments.add(tempDocument);
+                        mDriversLicenses.add(tempDrivers);
+                        mHealthCards.add(tempHealth);
+                        mPhotoIDs.add(tempPhoto);
                         Log.d(TAG, "Service: "+ tempService);
-                        Log.d(TAG, "Documents: "+ tempDocument);
                     }
 
 
@@ -82,11 +110,37 @@ public class AdminActivity extends AppCompatActivity {
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: init recyclerview");
 
-        RecyclerView recyclerView = findViewById((R.id.serviceList));
-        ServiceViewAdapter adapter = new ServiceViewAdapter(mServices, mDocuments, this);
+        recyclerView = findViewById((R.id.serviceList));
+        adapter = new ServiceViewAdapter(mServices, mDriversLicenses, mHealthCards, mPhotoIDs, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
+
+    }
+
+    @Override
+    public void applyResults(String service_name, Boolean drivers_license, Boolean health_card, Boolean photo_ID) {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        CollectionReference services = db.collection("services");
+
+        Map<String, Object> storeService = new HashMap<>();
+        storeService.put("service", service_name);
+        storeService.put("driversLicense", drivers_license);
+        storeService.put("healthCard", health_card);
+        storeService.put("photoID", photo_ID);
+
+        services.document(service_name).set(storeService);
+
+
+        mServices.add(service_name);
+        mDriversLicenses.add(drivers_license);
+        mHealthCards.add(health_card);
+        mPhotoIDs.add(photo_ID);
+
+        adapter.notifyItemInserted(mServices.size() - 1);
 
 
     }

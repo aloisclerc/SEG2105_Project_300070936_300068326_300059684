@@ -14,17 +14,6 @@
         android:text="Test"
         android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/document_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/service_name"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="21dp"
-        android:text="Type"
-        android:textSize="17sp" />
-
     <Button
         android:id="@+id/delete_service"
         android:layout_width="wrap_content"

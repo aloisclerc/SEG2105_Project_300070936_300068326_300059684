@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <EditText
+        android:id="@+id/addServiceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Service Name"
+        android:padding="16dp"/>
+
+    <CheckBox
+        android:id="@+id/driversCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addServiceName"
+        android:text="Drivers License" />
+
+    <CheckBox
+        android:id="@+id/healthCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/driversCheck"
+        android:text="Health Card" />
+
+    <CheckBox
+        android:id="@+id/photoCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/healthCheck"
+        android:text="Photo ID" />
+
+
+</RelativeLayout>

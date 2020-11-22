@@ -1,6 +1,8 @@
 package com.example.projectseg2105;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,15 +26,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 public class ServiceViewAdapter extends RecyclerView.Adapter<ServiceViewAdapter.ViewHolder>{
-    private static final String TAG = "UserViewAdapter";
+    private static final String TAG = "ServiceViewAdapter";
 
     private ArrayList<String> mServiceList = new ArrayList<>();
-    private ArrayList<String> mDocumentList = new ArrayList<>();
+    private ArrayList<Boolean> mDriversLicenses = new ArrayList<>();
+    private ArrayList<Boolean> mHealthCards = new ArrayList<>();
+    private ArrayList<Boolean> mPhotoIDs = new ArrayList<>();
     private Context mContext;
 
-    public  ServiceViewAdapter(ArrayList serviceList, ArrayList documentList, Context context){
+    public  ServiceViewAdapter(ArrayList serviceList, ArrayList driversLicenses, ArrayList healthCards, ArrayList photoIDs, Context context){
         mServiceList = serviceList;
-        mDocumentList = documentList;
+        mDriversLicenses = driversLicenses;
+        mHealthCards = healthCards;
+        mPhotoIDs = photoIDs;
         mContext = context;
     }
 
@@ -50,18 +56,22 @@ public class ServiceViewAdapter extends RecyclerView.Adapter<ServiceViewAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
         holder.serviceName.setText(mServiceList.get(position));
-        String temp = mDocumentList.get(position).replace("\\n", "\n");
-        //holder.documentList.setText(mDocumentList.get(position));
 
-        holder.documentList.setText(temp);
-        Log.d(TAG, "DocumentList: " + mDocumentList.get(position));
+
 
         holder.serviceLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on: " + mServiceList.get(position));
-
                 Toast.makeText(mContext, mServiceList.get(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, ServicesActivity.class);
+                Log.d(TAG, "booleans: " + mDriversLicenses.get(position) + " " + mHealthCards.get(position) + " " + mPhotoIDs.get(position));
+                intent.putExtra("service_name", mServiceList.get(position));
+                intent.putExtra("drivers", mDriversLicenses.get(position));
+                intent.putExtra("health", mHealthCards.get(position));
+                intent.putExtra("photo", mPhotoIDs.get(position));
+
+                mContext.startActivity(intent);
             }
         });
         holder.deleteService.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +114,6 @@ public class ServiceViewAdapter extends RecyclerView.Adapter<ServiceViewAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             serviceName = itemView.findViewById(R.id.service_name);
-            documentList = itemView.findViewById(R.id.document_list);
             serviceLayout = itemView.findViewById(R.id.service_layout);
             deleteService = itemView.findViewById(R.id.delete_service);
         }
@@ -112,7 +121,9 @@ public class ServiceViewAdapter extends RecyclerView.Adapter<ServiceViewAdapter.
 
     public void removeAt(int position) {
         mServiceList.remove(position);
-        mDocumentList.remove(position);
+        mDriversLicenses.remove(position);
+        mHealthCards.remove(position);
+        mPhotoIDs.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, mServiceList.size());
     }
