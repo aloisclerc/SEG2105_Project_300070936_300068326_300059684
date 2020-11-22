@@ -21,11 +21,38 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Services"
-            android:textSize="36sp" />
+            android:textSize="36sp"
+            android:textColor="#333"/>
+        <TextView
+            android:id="@+id/branchAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Services"
+            android:textSize="20sp"
+            android:textColor="#777"/>
+        <TextView
+            android:id="@+id/branchPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Services"
+            android:textSize="20sp"
+            android:textColor="#777"/>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="286dp" />
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/editBranch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Branch" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
 
         <Button
             android:id="@+id/driversLicenseBtn"

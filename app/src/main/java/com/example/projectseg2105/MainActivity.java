@@ -36,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 openLogin();
             }
         });
-
-
-
     }
 
     public void openRegister(){

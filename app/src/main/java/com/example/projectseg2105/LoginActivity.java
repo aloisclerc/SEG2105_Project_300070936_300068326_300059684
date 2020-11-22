@@ -69,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                             if (document.get("type").toString().equals("Admin")) {
                                 startActivity(new Intent(LoginActivity.this, AdminActivity.class));
                                 finish();
+                            } else if(document.get("type").toString().equals("Employee")) {
+                                startActivity(new Intent(LoginActivity.this, EmployeeActivity.class));
+                                finish();
                             } else {
                                 Toast.makeText( LoginActivity.this, document.get("type").toString(), Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));

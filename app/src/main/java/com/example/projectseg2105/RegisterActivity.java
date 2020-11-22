@@ -127,6 +127,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (document.get("type").toString().equals("Admin")) {
                                     startActivity(new Intent(RegisterActivity.this, AdminActivity.class));
                                     finish();
+                                } else if(document.get("type").toString().equals("Employee")) {
+                                    startActivity(new Intent(RegisterActivity.this, EmployeeActivity.class));
+                                    finish();
                                 } else {
                                     startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                                     finish();

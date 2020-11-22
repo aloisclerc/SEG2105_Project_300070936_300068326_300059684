@@ -12,19 +12,25 @@ import android.widget.TextView;
 public class ServicesActivity extends AppCompatActivity {
     private static final String TAG = "ServicesActivity";
 
-    private Button driversLicence, healthCard, photoID;
+    private Button editBranch, driversLicence, healthCard, photoID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services);
 
+        editBranch = findViewById(R.id.editBranch);
         driversLicence = (Button) findViewById(R.id.driversLicenseBtn);
         healthCard = (Button) findViewById(R.id.healthCardBtn);
         photoID = (Button) findViewById(R.id.photoIdBtn);
 
 
-
+        healthCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                editBranch();
+            }
+        });
         driversLicence.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -51,25 +57,38 @@ public class ServicesActivity extends AppCompatActivity {
         getIncomingIntent();
     }
 
+    private void editBranch(){
+
+    }
+
     private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent");
-        if(getIntent().hasExtra("service_name") && getIntent().hasExtra("drivers") && getIntent().hasExtra("health") && getIntent().hasExtra("photo")){
-            String serviceName = getIntent().getStringExtra("service_name");
+        if(getIntent().hasExtra("branch_name") && getIntent().hasExtra("drivers") && getIntent().hasExtra("health") && getIntent().hasExtra("photo") && getIntent().hasExtra("address") && getIntent().hasExtra("phone")){
+            String serviceName = getIntent().getStringExtra("branch_name");
+            String branchAddress = getIntent().getStringExtra("address");
+            String phoneNumber = getIntent().getStringExtra("phone");
             Boolean drivers = getIntent().getBooleanExtra("drivers", false);
             Boolean health = getIntent().getBooleanExtra("health", false);
             Boolean photo = getIntent().getBooleanExtra("photo", false);
 
             Log.d(TAG, "getIncomingIntent:" + serviceName);
 
-            setName(serviceName, drivers, health, photo);
+            setName(serviceName, branchAddress, phoneNumber, drivers, health, photo);
         }
     }
 
-    private void setName(String serviceName, Boolean drivers, Boolean health, Boolean photo){
+    private void setName(String serviceName, String branchAddress, String phoneNumber, Boolean drivers, Boolean health, Boolean photo){
         Log.d(TAG, "setName");
         Log.d(TAG, "booleans: " + drivers+ " " + health + " " + photo);
         TextView title = findViewById(R.id.servicesText);
+        TextView add = findViewById(R.id.branchAddress);
+        TextView phone = findViewById(R.id.branchPhone);
+
+
         title.setText(serviceName);
+        add.setText(branchAddress);
+        phone.setText(phoneNumber);
+
 
         if(drivers){
             driversLicence.setVisibility(View.VISIBLE);
