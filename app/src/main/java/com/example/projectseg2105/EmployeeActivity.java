@@ -41,6 +41,8 @@ public class EmployeeActivity extends AppCompatActivity {
     private ArrayList<Boolean> mHealthCards = new ArrayList<>();
     private ArrayList<Boolean> mPhotoIDs = new ArrayList<>();
 
+    private ArrayList<ArrayList<String>> mTimes = new ArrayList<>();
+
     private RecyclerView recyclerView;
     private BranchViewAdapter adapter;
 
@@ -84,12 +86,15 @@ public class EmployeeActivity extends AppCompatActivity {
                         Boolean tempDrivers = (Boolean) document.get("driversLicense");
                         Boolean tempHealth = (Boolean) document.get("healthCard");
                         Boolean tempPhoto = (Boolean) document.get("photoID");
+
+                        ArrayList<String> tempTimes = (ArrayList<String>) document.get("openTimes");
                         mBranches.add(tempBranch);
                         mAddresses.add(tempAdd);
                         mPhones.add(tempPhone);
                         mDriversLicenses.add(tempDrivers);
                         mHealthCards.add(tempHealth);
                         mPhotoIDs.add(tempPhoto);
+                        mTimes.add(tempTimes);
                         Log.d(TAG, "Branch: "+ tempBranch);
                     }
 
@@ -109,7 +114,7 @@ public class EmployeeActivity extends AppCompatActivity {
         Log.d(TAG, "initRecyclerView: init recyclerview");
 
         recyclerView = findViewById((R.id.branchList));
-        adapter = new BranchViewAdapter(mBranches, mAddresses, mPhones, mDriversLicenses, mHealthCards, mPhotoIDs, this);
+        adapter = new BranchViewAdapter(mBranches, mAddresses, mPhones, mDriversLicenses, mHealthCards, mPhotoIDs, mTimes, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

@@ -18,11 +18,13 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -83,15 +85,51 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
                 if(TextUtils.isEmpty(branch_name) || TextUtils.isEmpty(add) || TextUtils.isEmpty(phoneNum)){
                     Toast.makeText( AddBranchActivity.this, "A field is missing a value", Toast.LENGTH_SHORT).show();
                 } else {
-                    uploadBranch(branch_name, add, phoneNum, drivers_license, health_card, photoID, openTimes);
-                    startActivity(new Intent(AddBranchActivity.this, EmployeeActivity.class));
-                    finish();
+                    if(getIntent().hasExtra("activity")){
+                        if(getIntent().getStringExtra("activity").equals("edit")){
+                            editBranch(branch_name, add, phoneNum, drivers_license, health_card, photoID, openTimes);
+                            Intent intent = new Intent(AddBranchActivity.this, ServicesActivity.class);
+                            intent.putExtra("branch_name", branch_name);
+                            intent.putExtra("address", add);
+                            intent.putExtra("phone", phoneNum);
+                            intent.putExtra("drivers", drivers_license);
+                            intent.putExtra("health", health_card);
+                            intent.putExtra("photo", photoID);
+                            intent.putExtra("times", openTimes);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            uploadBranch(branch_name, add, phoneNum, drivers_license, health_card, photoID, openTimes);
+                            startActivity(new Intent(AddBranchActivity.this, EmployeeActivity.class));
+                            finish();
+                        }
+                    }
+
                 }
             }
         });
     }
 
+    private void editBranch(String branch_name, String address, String phone, Boolean drivers_license, Boolean health_card, Boolean photo_ID, String[] openTimes){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        DocumentReference branches = db.collection("branches").document(getIntent().getStringExtra("branch_name"));
+
+        Map<String, Object> storeBranch = new HashMap<>();
+        storeBranch.put("branch", branch_name);
+        storeBranch.put("address", address);
+        storeBranch.put("phone", phone);
+        storeBranch.put("driversLicense", drivers_license);
+        storeBranch.put("healthCard", health_card);
+        storeBranch.put("photoID", photo_ID);
+
+        List<String> times = Arrays.asList(openTimes);
+        storeBranch.put("openTimes", times);
+
+        branches.set(storeBranch);
+
+
+    }
 
     private void uploadBranch(String branch_name, String address, String phone, Boolean drivers_license, Boolean health_card, Boolean photo_ID, String[] openTimes){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -153,6 +191,18 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
         times[11] = findViewById(R.id.saturdayEnd);
         times[12] = findViewById(R.id.sundayStart);
         times[13] = findViewById(R.id.sundayEnd);
+
+        if(getIntent().hasExtra("activity")) {
+            if (getIntent().getStringExtra("activity").equals("edit")) {
+                ArrayList<String> openTimes = (ArrayList<String>) getIntent().getSerializableExtra("openTimes");
+                for(int i = 0; i < openTimes.size(); i++){
+                    times[i].setText((String) openTimes.get(i));
+                }
+                branchName.setText(getIntent().getStringExtra("branch_name"));
+                branchAddress.setText(getIntent().getStringExtra("branch_address"));
+                phoneNumber.setText(getIntent().getStringExtra("phoneNumber"));
+            }
+        }
 
     }
 

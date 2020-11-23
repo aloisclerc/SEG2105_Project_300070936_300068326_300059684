@@ -34,15 +34,17 @@ public class BranchViewAdapter extends RecyclerView.Adapter<BranchViewAdapter.Vi
     private ArrayList<Boolean> mDriversLicenses = new ArrayList<>();
     private ArrayList<Boolean> mHealthCards = new ArrayList<>();
     private ArrayList<Boolean> mPhotoIDs = new ArrayList<>();
+    private ArrayList<ArrayList<String>> mTimes = new ArrayList<>();
     private Context mContext;
 
-    public  BranchViewAdapter(ArrayList branchList, ArrayList addressList, ArrayList phoneList, ArrayList driversLicenses, ArrayList healthCards, ArrayList photoIDs, Context context){
+    public  BranchViewAdapter(ArrayList branchList, ArrayList addressList, ArrayList phoneList, ArrayList driversLicenses, ArrayList healthCards, ArrayList photoIDs, ArrayList times, Context context){
         mBranchList = branchList;
         mAddressList = addressList;
         mPhoneList = phoneList;
         mDriversLicenses = driversLicenses;
         mHealthCards = healthCards;
         mPhotoIDs = photoIDs;
+        mTimes = times;
         mContext = context;
     }
 
@@ -78,6 +80,7 @@ public class BranchViewAdapter extends RecyclerView.Adapter<BranchViewAdapter.Vi
                 intent.putExtra("drivers", mDriversLicenses.get(position));
                 intent.putExtra("health", mHealthCards.get(position));
                 intent.putExtra("photo", mPhotoIDs.get(position));
+                intent.putExtra("times", mTimes.get(position));
 
                 mContext.startActivity(intent);
             }
