@@ -7,9 +7,10 @@
     tools:context=".ServicesActivity">
 
     <LinearLayout
+        android:id="@+id/monday_start"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
+        android:gravity="center_horizontal|left"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,24 +22,26 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Services"
-            android:textSize="36sp"
-            android:textColor="#333"/>
+            android:textColor="#333"
+            android:textSize="36sp" />
+
         <TextView
             android:id="@+id/branchAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Services"
-            android:textSize="20sp"
-            android:textColor="#777"/>
+            android:textColor="#777"
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/branchPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Services"
-            android:textSize="20sp"
-            android:textColor="#777"/>
+            android:textColor="#777"
+            android:textSize="20sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -49,6 +52,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edit Branch" />
+
+        <TextView
+            android:id="@+id/monday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/monday_1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Tuesday: "
+            android:textColor="#000"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/monday_Start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/photoCheck"
+            android:layout_marginStart="51dp"
+            android:layout_marginLeft="51dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@+id/monday"
+            android:layout_toRightOf="@+id/monday"
+            android:text="00:00"
+            android:textColor="#000"
+            android:textSize="16dp" />
 
         <Space
             android:layout_width="match_parent"
