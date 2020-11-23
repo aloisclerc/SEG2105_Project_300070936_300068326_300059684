@@ -72,11 +72,17 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
                 Boolean drivers_license = driversCheck.isChecked();
                 Boolean health_card = healthCheck.isChecked();
                 Boolean photoID = photoCheck.isChecked();
+                String[] openTimes = new String[14];
+
+                for(int i = 0; i < times.length; i++){
+                    openTimes[i] = times[i].getText().toString();
+                }
+
 
                 if(TextUtils.isEmpty(branch_name) || TextUtils.isEmpty(add) || TextUtils.isEmpty(phoneNum)){
                     Toast.makeText( AddBranchActivity.this, "A field is missing a value", Toast.LENGTH_SHORT).show();
                 } else {
-                    uploadBranch(branch_name, add, phoneNum, drivers_license, health_card, photoID);
+                    uploadBranch(branch_name, add, phoneNum, drivers_license, health_card, photoID, openTimes);
                     startActivity(new Intent(AddBranchActivity.this, EmployeeActivity.class));
                     finish();
                 }
@@ -86,7 +92,7 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
 
 
 
-    private void uploadBranch(String branch_name, String address, String phone, Boolean drivers_license, Boolean health_card, Boolean photo_ID){
+    private void uploadBranch(String branch_name, String address, String phone, Boolean drivers_license, Boolean health_card, Boolean photo_ID, String[] openTimes){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         CollectionReference branches = db.collection("branches");
@@ -98,6 +104,7 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
         storeBranch.put("driversLicense", drivers_license);
         storeBranch.put("healthCard", health_card);
         storeBranch.put("photoID", photo_ID);
+        storeBranch.put("openTimes", openTimes);
 
         branches.document(branch_name).set(storeBranch);
     }
@@ -119,7 +126,7 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
     }
 
     private void initItems(){
-        times = new TextView[2];
+        times = new TextView[14];
 
 
         branchName = findViewById(R.id.addBranchName);
@@ -131,6 +138,18 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
         submit = findViewById(R.id.submitBranch);
         times[0] = findViewById(R.id.mondayStart);
         times[1] = findViewById(R.id.mondayEnd);
+        times[2] = findViewById(R.id.tuesdayStart);
+        times[3] = findViewById(R.id.tuesdayEnd);
+        times[4] = findViewById(R.id.wednedayStart);
+        times[5] = findViewById(R.id.wednesdayEnd);
+        times[6] = findViewById(R.id.thursdayStart);
+        times[7] = findViewById(R.id.thursdayEnd);
+        times[8] = findViewById(R.id.fridayStart);
+        times[9] = findViewById(R.id.fridayEnd);
+        times[10] = findViewById(R.id.saturdayStart);
+        times[11] = findViewById(R.id.saturdayEnd);
+        times[12] = findViewById(R.id.sundayStart);
+        times[13] = findViewById(R.id.sundayEnd);
 
     }
 
