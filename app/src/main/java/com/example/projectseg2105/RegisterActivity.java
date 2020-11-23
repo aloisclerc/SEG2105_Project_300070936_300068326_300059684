@@ -62,11 +62,23 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String email_txt = email.getText().toString();
                 String password_txt = password.getText().toString();
                 String first_txt = firstName.getText().toString();
                 String last_txt = lastName.getText().toString();
                 String type_txt = type.getSelectedItem().toString();
+
+                for(char c : first_txt.toCharArray()){
+                    if (Character.isDigit(c)){
+                        Toast.makeText( RegisterActivity.this, "Name must be all characters (Ex: John Doe)", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                for(char c : last_txt.toCharArray()){
+                    if (Character.isDigit(c)){
+                        Toast.makeText( RegisterActivity.this, "Name must be all characters (Ex: John Doe)", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
                 if(TextUtils.isEmpty(email_txt) || TextUtils.isEmpty(password_txt)){
                     Toast.makeText( RegisterActivity.this, "Please Enter a Value into both Fields", Toast.LENGTH_SHORT).show();
@@ -74,7 +86,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Password must be > 5 characters", Toast.LENGTH_SHORT).show();
                 } else {
                     registerUser(email_txt, password_txt, first_txt, last_txt, type_txt);
-
                 }
             }
         });
