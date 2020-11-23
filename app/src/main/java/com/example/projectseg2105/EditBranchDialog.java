@@ -94,7 +94,7 @@ public class EditBranchDialog extends AppCompatDialogFragment {
 
     private void initializeTimes(){
         mondayStart = getView().findViewById(R.id.monday_Start);
-        mondayEnd = getView().findViewById(R.id.mondayEnd);
+        mondayEnd = getView().findViewById(R.id.monday_start1);
 
 
     }

@@ -285,7 +285,7 @@
         android:textSize="16dp" />
 
     <TextView
-        android:id="@+id/mondayEnd"
+        android:id="@+id/monday_start1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/photoCheck"
@@ -309,7 +309,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:id="@+id/tuesday"
+        android:id="@+id/Monday"
         android:text="Tuesday: "
         android:textColor="#000"
         android:textSize = "16dp"
@@ -318,7 +318,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tuesday"
+        android:layout_below="@+id/Monday"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="16dp"
