@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EmployeeActivity extends AppCompatActivity implements AddBranchDialog.AddBranchDialogListener {
+public class EmployeeActivity extends AppCompatActivity {
     private static final String TAG = "EmployeeActivity";
 
     private Button addBranch;
@@ -63,8 +63,8 @@ public class EmployeeActivity extends AppCompatActivity implements AddBranchDial
     }
 
     public void addBranch(){
-        AddBranchDialog exampleDialog = new AddBranchDialog();
-        exampleDialog.show(getSupportFragmentManager(), "add branch dialog");
+        Intent intent = new Intent(this, AddBranchActivity.class);
+        startActivity(intent);
     }
 
     private void initBranches(){
@@ -116,7 +116,6 @@ public class EmployeeActivity extends AppCompatActivity implements AddBranchDial
 
     }
 
-    @Override
     public void applyResults(String branch_name, String address, String phone, Boolean drivers_license, Boolean health_card, Boolean photo_ID) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();

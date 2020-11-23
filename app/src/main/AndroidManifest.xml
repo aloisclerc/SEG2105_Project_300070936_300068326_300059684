@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AddBranchActivity"></activity>
         <activity android:name=".EmployeeActivity" />
         <activity android:name=".ViewUserActivity" />
         <activity android:name=".AdminActivity" />
