@@ -51,10 +51,18 @@ public class AddBranchDialog extends AppCompatDialogFragment {
                                     Boolean health_card = healthCheck.isChecked();
                                     Boolean photoID = photoCheck.isChecked();
 
+                                    for(char c : phoneNum.toCharArray()){
+                                        if (Character.isDigit(c) == false){
+                                            Toast.makeText( getContext(), "Phone number must only contain digits (Ex: 1234567890)", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
                                     if(TextUtils.isEmpty(branch_name) || TextUtils.isEmpty(add) || TextUtils.isEmpty(phoneNum)){
                                         Toast.makeText( getContext(), "A field is missing a value", Toast.LENGTH_SHORT).show();
+                                    } else if(phoneNum.length() != 10){
+                                        Toast.makeText( getContext(), "Phone number must contain 10 digits", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        listener.applyResults(branch_name, add, phoneNum, drivers_license, health_card, photoID);
                                     }
-                                    listener.applyResults(branch_name, add, phoneNum, drivers_license, health_card, photoID);
                                 }
                             });
         branchName = view.findViewById(R.id.addBranchName);

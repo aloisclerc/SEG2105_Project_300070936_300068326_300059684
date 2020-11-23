@@ -92,7 +92,6 @@ public class EmployeeActivity extends AppCompatActivity implements AddBranchDial
                         Log.d(TAG, "Branch: "+ tempBranch);
                     }
 
-
                     initRecyclerView();
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.getException());
@@ -111,10 +110,9 @@ public class EmployeeActivity extends AppCompatActivity implements AddBranchDial
         adapter = new BranchViewAdapter(mBranches, mAddresses, mPhones, mDriversLicenses, mHealthCards, mPhotoIDs, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
     }
+
+
 
     @Override
     public void applyResults(String branch_name, String address, String phone, Boolean drivers_license, Boolean health_card, Boolean photo_ID) {
