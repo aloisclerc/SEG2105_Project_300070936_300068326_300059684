@@ -53,40 +53,369 @@
             android:layout_height="wrap_content"
             android:text="Edit Branch" />
 
-        <TextView
-            android:id="@+id/monday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/monday_1"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_margin="5dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:text="Tuesday: "
-            android:textColor="#000"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/monday_Start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/photoCheck"
-            android:layout_marginStart="51dp"
-            android:layout_marginLeft="51dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_toEndOf="@+id/monday"
-            android:layout_toRightOf="@+id/monday"
-            android:text="00:00"
-            android:textColor="#000"
-            android:textSize="16dp" />
-
-        <Space
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="269dp">
+
+            <TextView
+                android:id="@+id/saturday_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="210dp"
+                android:layout_marginLeft="210dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/sunday_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="210dp"
+                android:layout_marginLeft="210dp"
+                android:layout_marginTop="180dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/thursday_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="210dp"
+                android:layout_marginLeft="210dp"
+                android:layout_marginTop="90dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/friday_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="210dp"
+                android:layout_marginLeft="210dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/wednesday_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="210dp"
+                android:layout_marginLeft="210dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tuesday_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="210dp"
+                android:layout_marginLeft="210dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/monday_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="210dp"
+                android:layout_marginLeft="210dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/sunday_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="180dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/saturday_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/friday_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/thursday_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="90dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/wedneaday_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tuesday_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="31dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/monday5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/monday"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="180dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Sunday:"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/monday4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/monday"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Saturday:"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/monday3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/monday"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Friday:"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/monday2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/monday"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Wednesday:"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/Monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/monday"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Monday:"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/Monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/monday"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="90dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Thursday:"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/Monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/monday"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="31dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Tuesday: "
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/monday_start1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photoCheck"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/monday_Start"
+                android:layout_toRightOf="@+id/monday_Start"
+                android:text="00:00"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+
+        </RelativeLayout>
 
         <Button
             android:id="@+id/driversLicenseBtn"
