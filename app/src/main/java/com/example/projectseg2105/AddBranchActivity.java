@@ -23,8 +23,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AddBranchActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
@@ -103,7 +105,9 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
         storeBranch.put("driversLicense", drivers_license);
         storeBranch.put("healthCard", health_card);
         storeBranch.put("photoID", photo_ID);
-        storeBranch.put("openTimes", openTimes);
+
+        List<String> times = Arrays.asList(openTimes);
+        storeBranch.put("openTimes", times);
 
         branches.document(branch_name).set(storeBranch);
     }
