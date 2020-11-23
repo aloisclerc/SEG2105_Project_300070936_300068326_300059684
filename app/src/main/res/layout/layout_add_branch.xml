@@ -15,8 +15,8 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_toEndOf="@+id/mondayStart"
-        android:layout_toRightOf="@+id/mondayStart"
+        android:layout_toEndOf="@+id/monday_Start"
+        android:layout_toRightOf="@+id/monday_Start"
         android:text="00:00"
         android:textColor="#000"
         android:textSize="16dp" />
@@ -32,8 +32,8 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_toEndOf="@+id/mondayStart"
-        android:layout_toRightOf="@+id/mondayStart"
+        android:layout_toEndOf="@+id/monday_Start"
+        android:layout_toRightOf="@+id/monday_Start"
         android:text="00:00"
         android:textColor="#000"
         android:textSize="16dp" />
@@ -49,8 +49,8 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_toEndOf="@+id/mondayStart"
-        android:layout_toRightOf="@+id/mondayStart"
+        android:layout_toEndOf="@+id/monday_Start"
+        android:layout_toRightOf="@+id/monday_Start"
         android:text="00:00"
         android:textColor="#000"
         android:textSize="16dp" />
@@ -114,8 +114,8 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_toEndOf="@+id/mondayStart"
-        android:layout_toRightOf="@+id/mondayStart"
+        android:layout_toEndOf="@+id/monday_Start"
+        android:layout_toRightOf="@+id/monday_Start"
         android:text="00:00"
         android:textColor="#000"
         android:textSize="16dp" />
@@ -131,8 +131,8 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_toEndOf="@+id/mondayStart"
-        android:layout_toRightOf="@+id/mondayStart"
+        android:layout_toEndOf="@+id/monday_Start"
+        android:layout_toRightOf="@+id/monday_Start"
         android:text="00:00"
         android:textColor="#000"
         android:textSize="16dp" />
@@ -148,8 +148,8 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_toEndOf="@+id/mondayStart"
-        android:layout_toRightOf="@+id/mondayStart"
+        android:layout_toEndOf="@+id/monday_Start"
+        android:layout_toRightOf="@+id/monday_Start"
         android:text="00:00"
         android:textColor="#000"
         android:textSize="16dp" />
@@ -268,7 +268,7 @@
 
 
     <TextView
-        android:id="@+id/mondayStart"
+        android:id="@+id/monday_Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/photoCheck"
@@ -295,8 +295,8 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_toEndOf="@+id/mondayStart"
-        android:layout_toRightOf="@+id/mondayStart"
+        android:layout_toEndOf="@+id/monday_Start"
+        android:layout_toRightOf="@+id/monday_Start"
         android:text="00:00"
         android:textColor="#000"
         android:textSize="16dp" />
