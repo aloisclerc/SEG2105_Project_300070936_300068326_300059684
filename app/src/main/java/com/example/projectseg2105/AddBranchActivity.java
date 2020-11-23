@@ -39,7 +39,6 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
     private CheckBox photoCheck;
     private Button submit;
 
-    private int[] hours, minutes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

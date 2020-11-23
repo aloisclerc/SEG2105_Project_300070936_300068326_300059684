@@ -25,7 +25,7 @@ public class ServicesActivity extends AppCompatActivity {
         photoID = (Button) findViewById(R.id.photoIdBtn);
 
 
-        healthCard.setOnClickListener(new View.OnClickListener() {
+        editBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 editBranch();
@@ -59,6 +59,10 @@ public class ServicesActivity extends AppCompatActivity {
 
     private void editBranch(){
 
+        Intent intent = new Intent(this, AddBranchActivity.class);
+        intent.putExtra("activity","edit");
+        //intent.putExtra("activity","edit");
+        startActivity(intent);
     }
 
     private void getIncomingIntent(){

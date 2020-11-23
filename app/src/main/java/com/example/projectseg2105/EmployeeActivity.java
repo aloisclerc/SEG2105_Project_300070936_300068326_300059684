@@ -64,6 +64,7 @@ public class EmployeeActivity extends AppCompatActivity {
 
     public void addBranch(){
         Intent intent = new Intent(this, AddBranchActivity.class);
+        intent.putExtra("activity","add");
         startActivity(intent);
     }
 
