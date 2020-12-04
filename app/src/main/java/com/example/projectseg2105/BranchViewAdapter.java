@@ -125,6 +125,12 @@ public class BranchViewAdapter extends RecyclerView.Adapter<BranchViewAdapter.Vi
             phoneNumber = itemView.findViewById(R.id.phone);
             branchLayout = itemView.findViewById(R.id.branch_layout);
             deleteBranch = itemView.findViewById(R.id.delete_branch);
+            if(mContext.getClass().equals(HomeActivity.class)){
+                deleteBranch.setVisibility(View.GONE);
+            }
+            Log.w(TAG, "Context: " + mContext.getClass().equals(HomeActivity.class));
+
+
         }
     }
 
