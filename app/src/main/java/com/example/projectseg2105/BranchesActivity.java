@@ -1,6 +1,5 @@
 package com.example.projectseg2105;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,16 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 
-public class ServicesActivity extends AppCompatActivity {
+public class BranchesActivity extends AppCompatActivity {
     private static final String TAG = "ServicesActivity";
 
     private Button editBranch, driversLicence, healthCard, photoID;
@@ -27,7 +19,7 @@ public class ServicesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_services);
+        setContentView(R.layout.activity_branches);
 
         editBranch = findViewById(R.id.editBranch);
         driversLicence = (Button) findViewById(R.id.driversLicenseBtn);

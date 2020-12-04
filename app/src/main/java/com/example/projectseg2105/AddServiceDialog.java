@@ -16,9 +16,10 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class AddServiceDialog extends AppCompatDialogFragment {
     private EditText serviceName;
-    private CheckBox driversCheck;
-    private CheckBox healthCheck;
-    private CheckBox photoCheck;
+    private EditText addAdditionalQuestion;
+    private EditText addDocument1;
+    private EditText addDocument2;
+    private EditText add_rate;
     private AddServiceDialogListener listener;
 
     @NonNull
@@ -40,16 +41,20 @@ public class AddServiceDialog extends AppCompatDialogFragment {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     String service_name = serviceName.getText().toString();
-                                    Boolean drivers_license = driversCheck.isChecked();
-                                    Boolean health_card = healthCheck.isChecked();
-                                    Boolean photoID = photoCheck.isChecked();
-                                    listener.applyResults(service_name, drivers_license, health_card, photoID);
+                                    String addQuest = addAdditionalQuestion.getText().toString();
+                                    String addDoc1 = addDocument1.getText().toString();
+                                    String addDoc2 = addDocument2.getText().toString();
+                                    String addRate = add_rate.getText().toString();
+
+
+                                    listener.applyResults(service_name, addQuest, addDoc1, addDoc2, addRate);
                                 }
                             });
         serviceName = view.findViewById(R.id.addServiceName);
-        driversCheck = view.findViewById(R.id.driversCheck);
-        healthCheck = view.findViewById(R.id.healthCheck);
-        photoCheck = view.findViewById(R.id.photoCheck);
+        addAdditionalQuestion = view.findViewById(R.id.addAdditionalQuestion);
+        addDocument1 = view.findViewById(R.id.addDocument1);
+        addDocument2 = view.findViewById(R.id.addDocument2);
+        add_rate = view.findViewById(R.id.addRate);
 
         return builder.create();
 
@@ -68,6 +73,6 @@ public class AddServiceDialog extends AppCompatDialogFragment {
     }
 
     public interface AddServiceDialogListener{
-        void applyResults(String service_name, Boolean drivers_license, Boolean health_card, Boolean photo_ID);
+        void applyResults(String service_name, String addQuest, String addDoc1, String addDoc2, String addRate);
     }
 }

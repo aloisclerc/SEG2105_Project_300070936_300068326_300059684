@@ -85,13 +85,7 @@ public class AdminActivity extends AppCompatActivity implements AddServiceDialog
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String tempService = document.get("service").toString();
-                        Boolean tempDrivers = (Boolean) document.get("driversLicense");
-                        Boolean tempHealth = (Boolean) document.get("healthCard");
-                        Boolean tempPhoto = (Boolean) document.get("photoID");
                         mServices.add(tempService);
-                        mDriversLicenses.add(tempDrivers);
-                        mHealthCards.add(tempHealth);
-                        mPhotoIDs.add(tempPhoto);
                         Log.d(TAG, "Service: "+ tempService);
                     }
 
@@ -120,7 +114,7 @@ public class AdminActivity extends AppCompatActivity implements AddServiceDialog
     }
 
     @Override
-    public void applyResults(String service_name, Boolean drivers_license, Boolean health_card, Boolean photo_ID) {
+    public void applyResults(String service_name, String addQuest, String addDoc1, String addDoc2, String addRate) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -128,18 +122,17 @@ public class AdminActivity extends AppCompatActivity implements AddServiceDialog
 
         Map<String, Object> storeService = new HashMap<>();
         storeService.put("service", service_name);
-        storeService.put("driversLicense", drivers_license);
-        storeService.put("healthCard", health_card);
-        storeService.put("photoID", photo_ID);
+        storeService.put("additionalQuestion", addQuest);
+        storeService.put("firstDoc", addDoc1);
+        storeService.put("secondDoc", addDoc2);
+        storeService.put("rate", addRate);
 
         services.document(service_name).set(storeService);
 
 
-        mServices.add(service_name);
-        mDriversLicenses.add(drivers_license);
-        mHealthCards.add(health_card);
-        mPhotoIDs.add(photo_ID);
 
+
+        mServices.add(service_name);
         adapter.notifyItemInserted(mServices.size() - 1);
 
 

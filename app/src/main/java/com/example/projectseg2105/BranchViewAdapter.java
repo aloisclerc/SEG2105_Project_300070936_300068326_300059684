@@ -1,6 +1,5 @@
 package com.example.projectseg2105;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -15,12 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -72,7 +67,7 @@ public class BranchViewAdapter extends RecyclerView.Adapter<BranchViewAdapter.Vi
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on: " + mBranchList.get(position));
                 Toast.makeText(mContext, mBranchList.get(position), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContext, ServicesActivity.class);
+                Intent intent = new Intent(mContext, BranchesActivity.class);
                 Log.d(TAG, "booleans: " + mDriversLicenses.get(position) + " " + mHealthCards.get(position) + " " + mPhotoIDs.get(position));
                 intent.putExtra("branch_name", mBranchList.get(position));
                 intent.putExtra("address", mAddressList.get(position));

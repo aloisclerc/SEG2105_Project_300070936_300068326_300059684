@@ -3,7 +3,6 @@ package com.example.projectseg2105;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,12 +20,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.w3c.dom.Text;
-
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,7 +83,7 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
                     if(getIntent().hasExtra("activity")){
                         if(getIntent().getStringExtra("activity").equals("edit")){
                             editBranch(branch_name, add, phoneNum, drivers_license, health_card, photoID, openTimes);
-                            Intent intent = new Intent(AddBranchActivity.this, ServicesActivity.class);
+                            Intent intent = new Intent(AddBranchActivity.this, BranchesActivity.class);
                             intent.putExtra("branch_name", branch_name);
                             intent.putExtra("address", add);
                             intent.putExtra("phone", phoneNum);

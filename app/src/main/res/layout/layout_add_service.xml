@@ -11,26 +11,44 @@
         android:hint="Service Name"
         android:padding="16dp"/>
 
-    <CheckBox
-        android:id="@+id/driversCheck"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/addAdditionalQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/addServiceName"
+        android:layout_below="@+id/addServiceName"
+        android:layout_marginTop="41dp"
+        android:layout_marginBottom="-153dp"
+        android:hint="Additional Question"
+        android:padding="16dp" />
+
+    <EditText
+        android:id="@+id/addDocument1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/addServiceName"
-        android:text="Drivers License" />
+        android:layout_marginTop="119dp"
+        android:hint="Document 1"
+        android:padding="16dp" />
 
-    <CheckBox
-        android:id="@+id/healthCheck"
+    <EditText
+        android:id="@+id/addDocument2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addServiceName"
+        android:layout_marginTop="196dp"
+        android:hint="Document 2"
+        android:padding="16dp" />
+
+    <EditText
+        android:id="@+id/addRate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/driversCheck"
-        android:text="Health Card" />
-
-    <CheckBox
-        android:id="@+id/photoCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/healthCheck"
-        android:text="Photo ID" />
+        android:layout_below="@+id/addDocument2"
+        android:layout_marginTop="34dp"
+        android:ems="10"
+        android:hint="Rate"
+        android:inputType="number" />
 
 
 </RelativeLayout>

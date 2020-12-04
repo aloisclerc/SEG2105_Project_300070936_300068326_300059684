@@ -9,14 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddBranchActivity"></activity>
+        <activity android:name=".EditDocsDialog"></activity>
+        <activity android:name=".DocumentsActivity" />
+        <activity android:name=".FormActivity" />
+        <activity android:name=".Service_Activity" />
+        <activity android:name=".AddBranchActivity" />
         <activity android:name=".EmployeeActivity" />
         <activity android:name=".ViewUserActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ServicesActivity" />
+        <activity android:name=".BranchesActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
