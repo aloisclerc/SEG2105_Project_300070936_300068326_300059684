@@ -27,23 +27,30 @@ jobs:
 
     steps:
       - checkout
+      
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
       # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-             fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      #- restore_cache:
+       #   keys:
+        #    - v1-dependencies-{{ checksum "build.gradle" }}
+         #    fallback to using the latest cache if no exact match is found
+          #  - v1-dependencies-
 
       #- run: gradle dependencies
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
 
+      #- save_cache:
+       #   paths:
+        #    - ~/.gradle
+         # key: v1-dependencies-{{ checksum "build.gradle" }}
       - save_cache:
           paths:
             - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
       # run tests!
      # - run: gradle test
