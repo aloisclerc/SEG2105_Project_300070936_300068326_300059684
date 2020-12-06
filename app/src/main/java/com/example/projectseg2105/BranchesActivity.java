@@ -2,6 +2,7 @@ package com.example.projectseg2105;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,6 +57,8 @@ public class BranchesActivity extends AppCompatActivity {
         healthCard.setVisibility(View.GONE);
         photoID.setVisibility(View.GONE);
 
+
+
         getIncomingIntent();
     }
 
@@ -80,14 +83,15 @@ public class BranchesActivity extends AppCompatActivity {
             Boolean health = getIntent().getBooleanExtra("health", false);
             Boolean photo = getIntent().getBooleanExtra("photo", false);
             ArrayList<String> times = (ArrayList<String>) getIntent().getSerializableExtra("times");
+            String userType = getIntent().getStringExtra("previous");
 
             Log.d(TAG, "getIncomingIntent:" + serviceName);
 
-            setName(serviceName, branchAddress, phoneNumber, drivers, health, photo, times);
+            setName(serviceName, branchAddress, phoneNumber, drivers, health, photo, times, userType);
         }
     }
 
-    private void setName(String serviceName, String branchAddress, String phoneNumber, Boolean drivers, Boolean health, Boolean photo, ArrayList times){
+    private void setName(String serviceName, String branchAddress, String phoneNumber, Boolean drivers, Boolean health, Boolean photo, ArrayList times, String userType){
         Log.d(TAG, "setName");
         Log.d(TAG, "booleans: " + drivers+ " " + health + " " + photo);
 
@@ -131,6 +135,31 @@ public class BranchesActivity extends AppCompatActivity {
         }
         if(photo){
             photoID.setVisibility(View.VISIBLE);
+        }
+
+        if(userType.equals("User")){
+            editBranch.setVisibility(View.GONE);
+            driversLicence.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    Intent intent = new Intent(BranchesActivity.this, ApplicationActivity.class);
+                    startActivity(intent);
+                }
+            });
+            healthCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    Intent intent = new Intent(BranchesActivity.this, ApplicationActivity.class);
+                    startActivity(intent);
+                }
+            });
+            photoID.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    Intent intent = new Intent(BranchesActivity.this, ApplicationActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
     }
 

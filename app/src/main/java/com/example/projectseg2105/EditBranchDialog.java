@@ -65,12 +65,12 @@ public class EditBranchDialog extends AppCompatDialogFragment {
                                     listener.applyResults(branch_name, add, phoneNum, drivers_license, health_card, photoID);
                                 }
                             });
-        branchName = view.findViewById(R.id.addBranchName);
-        branchAddress = view.findViewById(R.id.addAddress);
-        phoneNumber = view.findViewById(R.id.addPhone);
-        driversCheck = view.findViewById(R.id.driversCheck);
-        healthCheck = view.findViewById(R.id.healthCheck);
-        photoCheck = view.findViewById(R.id.photoCheck);
+        branchName = view.findViewById(R.id.searchBranchName);
+        branchAddress = view.findViewById(R.id.searchAddress);
+        phoneNumber = view.findViewById(R.id.searchPhone);
+        driversCheck = view.findViewById(R.id.searchDriversCheck);
+        healthCheck = view.findViewById(R.id.searchHealthCheck);
+        photoCheck = view.findViewById(R.id.searchPhotoCheck);
 
         return builder.create();
 

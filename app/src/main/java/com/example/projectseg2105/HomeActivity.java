@@ -1,4 +1,4 @@
-package com.example.projectseg2105;
+  package com.example.projectseg2105;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +43,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<ArrayList<String>> mTimes = new ArrayList<>();
 
+    private Button searchBranch;
+
     private RecyclerView recyclerView;
     private BranchViewAdapter adapter;
 
@@ -52,6 +54,15 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee);
 
         addBranch = findViewById(R.id.addBranch);
+        searchBranch = findViewById(R.id.searchButton);
+
+        searchBranch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, SearchActivity.class));
+                finish();
+            }
+        });
 
         addBranch.setVisibility(View.GONE);
 
@@ -71,20 +82,42 @@ public class HomeActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String tempBranch = document.get("branch").toString();
-                        String tempAdd = document.get("address").toString();
-                        String tempPhone = document.get("phone").toString();
-                        Boolean tempDrivers = (Boolean) document.get("driversLicense");
-                        Boolean tempHealth = (Boolean) document.get("healthCard");
-                        Boolean tempPhoto = (Boolean) document.get("photoID");
 
-                        ArrayList<String> tempTimes = (ArrayList<String>) document.get("openTimes");
-                        mBranches.add(tempBranch);
-                        mAddresses.add(tempAdd);
-                        mPhones.add(tempPhone);
-                        mDriversLicenses.add(tempDrivers);
-                        mHealthCards.add(tempHealth);
-                        mPhotoIDs.add(tempPhoto);
-                        mTimes.add(tempTimes);
+                        if(getIntent().hasExtra("validBranches")){
+                            ArrayList<String> validBranches = getIntent().getStringArrayListExtra("validBranches");
+
+                            if(validBranches.contains(tempBranch)){
+                                String tempAdd = document.get("address").toString();
+                                String tempPhone = document.get("phone").toString();
+                                Boolean tempDrivers = (Boolean) document.get("driversLicense");
+                                Boolean tempHealth = (Boolean) document.get("healthCard");
+                                Boolean tempPhoto = (Boolean) document.get("photoID");
+                                ArrayList<String> tempTimes = (ArrayList<String>) document.get("openTimes");
+
+                                mBranches.add(tempBranch);
+                                mAddresses.add(tempAdd);
+                                mPhones.add(tempPhone);
+                                mDriversLicenses.add(tempDrivers);
+                                mHealthCards.add(tempHealth);
+                                mPhotoIDs.add(tempPhoto);
+                                mTimes.add(tempTimes);
+                            }
+                        } else {
+                            String tempAdd = document.get("address").toString();
+                            String tempPhone = document.get("phone").toString();
+                            Boolean tempDrivers = (Boolean) document.get("driversLicense");
+                            Boolean tempHealth = (Boolean) document.get("healthCard");
+                            Boolean tempPhoto = (Boolean) document.get("photoID");
+                            ArrayList<String> tempTimes = (ArrayList<String>) document.get("openTimes");
+
+                            mBranches.add(tempBranch);
+                            mAddresses.add(tempAdd);
+                            mPhones.add(tempPhone);
+                            mDriversLicenses.add(tempDrivers);
+                            mHealthCards.add(tempHealth);
+                            mPhotoIDs.add(tempPhoto);
+                            mTimes.add(tempTimes);
+                        }
                         Log.d(TAG, "Branch: "+ tempBranch);
                     }
 
@@ -108,35 +141,6 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
-
-    }
-
-    public void applyResults(String branch_name, String address, String phone, Boolean drivers_license, Boolean health_card, Boolean photo_ID) {
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        CollectionReference branches = db.collection("branches");
-
-        Map<String, Object> storeBranch = new HashMap<>();
-        storeBranch.put("branch", branch_name);
-        storeBranch.put("address", address);
-        storeBranch.put("phone", phone);
-        storeBranch.put("driversLicense", drivers_license);
-        storeBranch.put("healthCard", health_card);
-        storeBranch.put("photoID", photo_ID);
-
-        branches.document(branch_name).set(storeBranch);
-
-
-        mBranches.add(branch_name);
-        mAddresses.add(address);
-        mPhones.add(phone);
-        mDriversLicenses.add(drivers_license);
-        mHealthCards.add(health_card);
-        mPhotoIDs.add(photo_ID);
-
-        adapter.notifyItemInserted(mBranches.size() - 1);
 
 
     }

@@ -165,26 +165,26 @@ public class AddBranchActivity extends AppCompatActivity implements TimePickerDi
         times = new TextView[14];
 
 
-        branchName = findViewById(R.id.addBranchName);
-        branchAddress = findViewById(R.id.addAddress);
-        phoneNumber = findViewById(R.id.addPhone);
-        driversCheck = findViewById(R.id.driversCheck);
-        healthCheck = findViewById(R.id.healthCheck);
-        photoCheck = findViewById(R.id.photoCheck);
+        branchName = findViewById(R.id.searchBranchName);
+        branchAddress = findViewById(R.id.searchAddress);
+        phoneNumber = findViewById(R.id.searchPhone);
+        driversCheck = findViewById(R.id.searchDriversCheck);
+        healthCheck = findViewById(R.id.searchHealthCheck);
+        photoCheck = findViewById(R.id.searchPhotoCheck);
         submit = findViewById(R.id.submitBranch);
-        times[0] = findViewById(R.id.mondayStart);
-        times[1] = findViewById(R.id.mondayEnd);
+        times[0] = findViewById(R.id.mondayStartSearch);
+        times[1] = findViewById(R.id.mondayEndSearch);
         times[2] = findViewById(R.id.tuesdayStart);
-        times[3] = findViewById(R.id.tuesdayEnd);
+        times[3] = findViewById(R.id.tuesdayEndSearch);
         times[4] = findViewById(R.id.wednedayStart);
-        times[5] = findViewById(R.id.wednesdayEnd);
+        times[5] = findViewById(R.id.wednesdayEndSearch);
         times[6] = findViewById(R.id.thursdayStart);
-        times[7] = findViewById(R.id.thursdayEnd);
-        times[8] = findViewById(R.id.fridayStart);
-        times[9] = findViewById(R.id.fridayEnd);
-        times[10] = findViewById(R.id.saturdayStart);
+        times[7] = findViewById(R.id.thursdayEndSearch);
+        times[8] = findViewById(R.id.fridayStartSearch);
+        times[9] = findViewById(R.id.fridayEndSearch);
+        times[10] = findViewById(R.id.saturdayStartSearch);
         times[11] = findViewById(R.id.saturdayEnd);
-        times[12] = findViewById(R.id.sundayStart);
+        times[12] = findViewById(R.id.sundayStartSearch);
         times[13] = findViewById(R.id.sundayEnd);
 
         if(getIntent().hasExtra("activity")) {

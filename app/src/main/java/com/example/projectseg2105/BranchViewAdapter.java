@@ -77,6 +77,12 @@ public class BranchViewAdapter extends RecyclerView.Adapter<BranchViewAdapter.Vi
                 intent.putExtra("photo", mPhotoIDs.get(position));
                 intent.putExtra("times", mTimes.get(position));
 
+                if(mContext.getClass().equals(HomeActivity.class)){
+                    intent.putExtra("previous", "User");
+                } else {
+                    intent.putExtra("previous", "Employee");
+                }
+
                 mContext.startActivity(intent);
             }
         });

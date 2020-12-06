@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditDocsDialog"></activity>
+        <activity android:name=".ApplicationActivity"></activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".EditDocsDialog" />
         <activity android:name=".DocumentsActivity" />
         <activity android:name=".FormActivity" />
         <activity android:name=".Service_Activity" />
