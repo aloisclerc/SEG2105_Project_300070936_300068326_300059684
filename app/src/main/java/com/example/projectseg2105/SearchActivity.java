@@ -98,7 +98,7 @@ public class SearchActivity extends AppCompatActivity implements TimePickerDialo
                         Boolean tempPhoto = (Boolean) document.get("photoID");
                         ArrayList<String> tempTimes = (ArrayList<String>) document.get("openTimes");
 
-                        if((tempDrivers || !drivers_license) || (tempHealth || !health_card) || (tempPhoto || !photoID)){
+                        if((tempDrivers || !drivers_license) && (tempHealth || !health_card) && (tempPhoto || !photoID)){
                             Log.d(TAG, "Branch: "+ tempBranch + (branch_name.isEmpty() || (tempBranch.toLowerCase().contains(branch_name.toLowerCase()))));
                             if(branch_name.isEmpty() || (tempBranch.toLowerCase().contains(branch_name.toLowerCase()))){
                                 Log.d(TAG, "Made it this far");
