@@ -24,6 +24,7 @@ public class Service_Activity extends AppCompatActivity {
     private Button form;
     private Button documents;
     private TextView rate;
+    private TextView service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,9 @@ public class Service_Activity extends AppCompatActivity {
         form = (Button) findViewById(R.id.form);
         documents = (Button) findViewById(R.id.documents);
         rate = findViewById(R.id.rate);
+        service = findViewById(R.id.serviceTitle);
+
+        service.setText(getIntent().getStringExtra("service_name"));
 
         form.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +63,7 @@ public class Service_Activity extends AppCompatActivity {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         String tempRate = document.get("rate").toString();
-                        rate.setText(tempRate);
+                        rate.setText("$"+tempRate);
                     } else {
                         Log.d(TAG, "No such document");
                     }

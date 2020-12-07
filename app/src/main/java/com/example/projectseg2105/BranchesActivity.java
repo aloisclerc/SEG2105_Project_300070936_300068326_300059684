@@ -46,13 +46,21 @@ public class BranchesActivity extends AppCompatActivity {
 
     private void editBranch(){
 
-        Intent intent = new Intent(this, AddBranchActivity.class);
-        intent.putExtra("activity","edit");
-        intent.putExtra("branch_address",getIntent().getStringExtra("address"));
-        intent.putExtra("phoneNumber",getIntent().getStringExtra("phone"));
-        intent.putExtra("openTimes", (ArrayList<String>) getIntent().getSerializableExtra("times"));
-        intent.putExtra("branch_name",getIntent().getStringExtra("branch_name"));
-        startActivity(intent);
+        if(getIntent().getStringExtra("previous").equals("User")) {
+
+
+
+        } else {
+            Intent intent = new Intent(this, AddBranchActivity.class);
+            intent.putExtra("activity","edit");
+            intent.putExtra("branch_address",getIntent().getStringExtra("address"));
+            intent.putExtra("phoneNumber",getIntent().getStringExtra("phone"));
+            intent.putExtra("openTimes", (ArrayList<String>) getIntent().getSerializableExtra("times"));
+            intent.putExtra("branch_name",getIntent().getStringExtra("branch_name"));
+            startActivity(intent);
+        }
+
+
     }
 
     private void getIncomingIntent(){
@@ -120,7 +128,7 @@ public class BranchesActivity extends AppCompatActivity {
         }
 
         if(userType.equals("User")){
-            editBranch.setVisibility(View.GONE);
+            editBranch.setText("Rate Branch");
             driversLicence.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
