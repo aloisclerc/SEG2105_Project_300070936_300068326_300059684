@@ -33,6 +33,7 @@ public class EmployeeActivity extends AppCompatActivity {
     private static final String TAG = "EmployeeActivity";
 
     private Button addBranch;
+    private Button searchBranch;
 
     private ArrayList<String> mBranches = new ArrayList<>();
     private ArrayList<String> mAddresses = new ArrayList<>();
@@ -60,6 +61,18 @@ public class EmployeeActivity extends AppCompatActivity {
             }
         });
 
+        searchBranch = findViewById(R.id.searchButton);
+
+        searchBranch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EmployeeActivity.this, SearchActivity.class);
+                intent.putExtra("previous", "Employee");
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         initBranches();
     }
@@ -81,21 +94,45 @@ public class EmployeeActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String tempBranch = document.get("branch").toString();
-                        String tempAdd = document.get("address").toString();
-                        String tempPhone = document.get("phone").toString();
-                        Boolean tempDrivers = (Boolean) document.get("driversLicense");
-                        Boolean tempHealth = (Boolean) document.get("healthCard");
-                        Boolean tempPhoto = (Boolean) document.get("photoID");
 
-                        ArrayList<String> tempTimes = (ArrayList<String>) document.get("openTimes");
-                        mBranches.add(tempBranch);
-                        mAddresses.add(tempAdd);
-                        mPhones.add(tempPhone);
-                        mDriversLicenses.add(tempDrivers);
-                        mHealthCards.add(tempHealth);
-                        mPhotoIDs.add(tempPhoto);
-                        mTimes.add(tempTimes);
-                        Log.d(TAG, "Branch: "+ tempBranch);
+                        if (getIntent().hasExtra("validBranches")) {
+                            ArrayList<String> validBranches = getIntent().getStringArrayListExtra("validBranches");
+
+                            if (validBranches.contains(tempBranch)) {
+                                String tempAdd = document.get("address").toString();
+                                String tempPhone = document.get("phone").toString();
+                                Boolean tempDrivers = (Boolean) document.get("driversLicense");
+                                Boolean tempHealth = (Boolean) document.get("healthCard");
+                                Boolean tempPhoto = (Boolean) document.get("photoID");
+
+                                ArrayList<String> tempTimes = (ArrayList<String>) document.get("openTimes");
+                                mBranches.add(tempBranch);
+                                mAddresses.add(tempAdd);
+                                mPhones.add(tempPhone);
+                                mDriversLicenses.add(tempDrivers);
+                                mHealthCards.add(tempHealth);
+                                mPhotoIDs.add(tempPhoto);
+                                mTimes.add(tempTimes);
+                                Log.d(TAG, "Branch: " + tempBranch);
+
+                            }
+
+                        } else {
+                            String tempAdd = document.get("address").toString();
+                            String tempPhone = document.get("phone").toString();
+                            Boolean tempDrivers = (Boolean) document.get("driversLicense");
+                            Boolean tempHealth = (Boolean) document.get("healthCard");
+                            Boolean tempPhoto = (Boolean) document.get("photoID");
+
+                            ArrayList<String> tempTimes = (ArrayList<String>) document.get("openTimes");
+                            mBranches.add(tempBranch);
+                            mAddresses.add(tempAdd);
+                            mPhones.add(tempPhone);
+                            mDriversLicenses.add(tempDrivers);
+                            mHealthCards.add(tempHealth);
+                            mPhotoIDs.add(tempPhoto);
+                            mTimes.add(tempTimes);
+                        }
                     }
 
 

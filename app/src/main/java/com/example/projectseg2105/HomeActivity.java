@@ -59,7 +59,9 @@ public class HomeActivity extends AppCompatActivity {
         searchBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, SearchActivity.class));
+                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                intent.putExtra("previous", "User");
+                startActivity(intent);
                 finish();
             }
         });

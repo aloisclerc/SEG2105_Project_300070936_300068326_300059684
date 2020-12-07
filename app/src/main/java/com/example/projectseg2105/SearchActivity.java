@@ -76,7 +76,7 @@ public class SearchActivity extends AppCompatActivity implements TimePickerDialo
         final Boolean photoID = photoCheck.isChecked();
         final String[] openTimes = new String[14];
         final ArrayList<String> validBranches  = new ArrayList<>();
-        final Intent intent = new Intent(this, HomeActivity.class);
+
 
         for(int i = 0; i < times.length; i++){
             openTimes[i] = times[i].getText().toString();
@@ -121,9 +121,19 @@ public class SearchActivity extends AppCompatActivity implements TimePickerDialo
 
 
                     }
-                    intent.putStringArrayListExtra("validBranches", validBranches);
-                    startActivity(intent);
-                    finish();
+                    if(getIntent().getStringExtra("previous").equals("User")){
+                        Intent intent = new Intent(SearchActivity.this, HomeActivity.class);
+                        intent.putStringArrayListExtra("validBranches", validBranches);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Intent intent = new Intent(SearchActivity.this, EmployeeActivity.class);
+                        intent.putStringArrayListExtra("validBranches", validBranches);
+                        startActivity(intent);
+                        finish();
+                    }
+
+
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.getException());
                 }
