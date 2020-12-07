@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -33,7 +35,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.ByteArrayOutputStream;
+import java.lang.ref.Reference;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ApplicationActivity extends AppCompatActivity {
     private static final String TAG = "ApplicationActivity";
@@ -42,6 +50,7 @@ public class ApplicationActivity extends AppCompatActivity {
     EditText firstName;
     EditText lastName;
     EditText DOB;
+    EditText appointmentDate;
     EditText address;
     TextView addQuestion;
     EditText addReply;
@@ -85,6 +94,27 @@ public class ApplicationActivity extends AppCompatActivity {
     }
 
     private void apply(){
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        String branch_name = getIntent().getStringExtra("branch_name");
+
+        DocumentReference branch = db.collection("branches").document(branch_name);
+
+        Map<String, Object> storeApplication = new HashMap<>();
+
+        storeApplication.put("firstName", firstName.getText().toString());
+        storeApplication.put("lastName", lastName.getText().toString());
+        storeApplication.put("DOB", DOB.getText().toString());
+        storeApplication.put("appointmentDate", appointmentDate.getText().toString());
+        storeApplication.put("address", address.getText().toString());
+        storeApplication.put("addReply", addReply.getText().toString());
+
+        branch.collection(application.getText().toString()).document(firstName.getText().toString()).set(storeApplication);
+
+        startActivity(new Intent(ApplicationActivity.this, HomeActivity.class));
+        finish();
 
     }
 
@@ -197,6 +227,7 @@ public class ApplicationActivity extends AppCompatActivity {
         firstName = findViewById(R.id.applicationFirstName);
         lastName = findViewById(R.id.applicationLastName);
         DOB = findViewById(R.id.applicationDate);
+        appointmentDate = findViewById(R.id.appointmentDate);
         address = findViewById(R.id.applicationAddress);
         addQuestion = findViewById(R.id.additionalQuestion);
         addReply = findViewById(R.id.applicationAnswer);
@@ -211,7 +242,7 @@ public class ApplicationActivity extends AppCompatActivity {
 
 
         String applicationType = getIntent().getStringExtra("appType");
-        String branch_name = getIntent().getStringExtra("branch_name");
+
 
         application.setText(applicationType);
 

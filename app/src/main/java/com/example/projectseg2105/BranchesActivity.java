@@ -34,24 +34,6 @@ public class BranchesActivity extends AppCompatActivity {
                 editBranch();
             }
         });
-        driversLicence.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                openDriversLicence();
-            }
-        });
-        healthCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                openHealthCard();
-            }
-        });
-        photoID.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                openPhotoID();
-            }
-        });
 
         driversLicence.setVisibility(View.GONE);
         healthCard.setVisibility(View.GONE);
@@ -166,21 +148,34 @@ public class BranchesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+        } else {
+            driversLicence.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    Intent intent = new Intent(BranchesActivity.this, ViewApplicationsActivity.class);
+                    intent.putExtra("branch_name", serviceName);
+                    intent.putExtra("appType", "Driver's License");
+                    startActivity(intent);
+                }
+            });
+            healthCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    Intent intent = new Intent(BranchesActivity.this, ViewApplicationsActivity.class);
+                    intent.putExtra("branch_name", serviceName);
+                    intent.putExtra("appType", "Health Card");
+                    startActivity(intent);
+                }
+            });
+            photoID.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    Intent intent = new Intent(BranchesActivity.this, ViewApplicationsActivity.class);
+                    intent.putExtra("branch_name", serviceName);
+                    intent.putExtra("appType", "Photo ID");
+                    startActivity(intent);
+                }
+            });
         }
-    }
-
-    public void openDriversLicence(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void openHealthCard(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void openPhotoID(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 }
