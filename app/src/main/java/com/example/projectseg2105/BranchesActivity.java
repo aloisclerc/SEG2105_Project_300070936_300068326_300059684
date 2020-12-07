@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class BranchesActivity extends AppCompatActivity {
+public class BranchesActivity extends AppCompatActivity implements RateDialog.RateDialogListener{
     private static final String TAG = "ServicesActivity";
 
     private Button editBranch, driversLicence, healthCard, photoID;
@@ -48,7 +48,8 @@ public class BranchesActivity extends AppCompatActivity {
 
         if(getIntent().getStringExtra("previous").equals("User")) {
 
-
+            RateDialog exampleDialog = new RateDialog();
+            exampleDialog.show(getSupportFragmentManager(), "rate dialog");
 
         } else {
             Intent intent = new Intent(this, AddBranchActivity.class);
@@ -185,5 +186,10 @@ public class BranchesActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public void applyResults() {
+
     }
 }
