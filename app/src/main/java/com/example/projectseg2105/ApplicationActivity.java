@@ -1,6 +1,7 @@
 package com.example.projectseg2105;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -16,6 +17,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -24,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,8 +40,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.ref.Reference;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,7 +81,12 @@ public class ApplicationActivity extends AppCompatActivity {
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apply();
+                try {
+                    apply();
+                } catch (ParseException e) {
+                    Toast.makeText(ApplicationActivity.this, "An error took place with one of your dates. Please check the format and try again.", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -93,28 +106,43 @@ public class ApplicationActivity extends AppCompatActivity {
         });
     }
 
-    private void apply(){
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private void apply() throws ParseException {
 
 
-        String branch_name = getIntent().getStringExtra("branch_name");
 
-        DocumentReference branch = db.collection("branches").document(branch_name);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(appointmentDate.getText().toString());
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(DOB.getText().toString());
+        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        Date dateobj = new Date();
 
-        Map<String, Object> storeApplication = new HashMap<>();
+        if(firstName.getText().toString().isEmpty() || lastName.getText().toString().isEmpty() || DOB.getText().toString().isEmpty() || appointmentDate.getText().toString().isEmpty() || address.getText().toString().isEmpty() || addReply.getText().toString().isEmpty()){
+            Toast.makeText(ApplicationActivity.this, "One or more of your fields were left empty. Please try again.", Toast.LENGTH_SHORT).show();
+        } else if(date1.before(dateobj)){
+            Toast.makeText(ApplicationActivity.this, "Appointment Date must be after current date.", Toast.LENGTH_SHORT).show();
+        } else{
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        storeApplication.put("firstName", firstName.getText().toString());
-        storeApplication.put("lastName", lastName.getText().toString());
-        storeApplication.put("DOB", DOB.getText().toString());
-        storeApplication.put("appointmentDate", appointmentDate.getText().toString());
-        storeApplication.put("address", address.getText().toString());
-        storeApplication.put("addReply", addReply.getText().toString());
 
-        branch.collection(application.getText().toString()).document(firstName.getText().toString()).set(storeApplication);
+            String branch_name = getIntent().getStringExtra("branch_name");
 
-        startActivity(new Intent(ApplicationActivity.this, HomeActivity.class));
-        finish();
+            DocumentReference branch = db.collection("branches").document(branch_name);
+
+            Map<String, Object> storeApplication = new HashMap<>();
+
+            storeApplication.put("firstName", firstName.getText().toString());
+            storeApplication.put("lastName", lastName.getText().toString());
+            storeApplication.put("DOB", DOB.getText().toString());
+            storeApplication.put("appointmentDate", appointmentDate.getText().toString());
+            storeApplication.put("address", address.getText().toString());
+            storeApplication.put("addReply", addReply.getText().toString());
+
+            branch.collection(application.getText().toString()).document(firstName.getText().toString()).set(storeApplication);
+
+            startActivity(new Intent(ApplicationActivity.this, HomeActivity.class));
+            finish();
+        }
+
 
     }
 
