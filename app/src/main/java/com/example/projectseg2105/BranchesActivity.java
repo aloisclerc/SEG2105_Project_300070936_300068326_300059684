@@ -91,7 +91,7 @@ public class BranchesActivity extends AppCompatActivity {
         }
     }
 
-    private void setName(String serviceName, String branchAddress, String phoneNumber, Boolean drivers, Boolean health, Boolean photo, ArrayList times, String userType){
+    private void setName(final String serviceName, String branchAddress, String phoneNumber, Boolean drivers, Boolean health, Boolean photo, ArrayList times, String userType){
         Log.d(TAG, "setName");
         Log.d(TAG, "booleans: " + drivers+ " " + health + " " + photo);
 
@@ -143,6 +143,8 @@ public class BranchesActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v){
                     Intent intent = new Intent(BranchesActivity.this, ApplicationActivity.class);
+                    intent.putExtra("branch_name", serviceName);
+                    intent.putExtra("appType", "Driver's License");
                     startActivity(intent);
                 }
             });
@@ -150,6 +152,8 @@ public class BranchesActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v){
                     Intent intent = new Intent(BranchesActivity.this, ApplicationActivity.class);
+                    intent.putExtra("branch_name", serviceName);
+                    intent.putExtra("appType", "Health Card");
                     startActivity(intent);
                 }
             });
@@ -157,6 +161,8 @@ public class BranchesActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v){
                     Intent intent = new Intent(BranchesActivity.this, ApplicationActivity.class);
+                    intent.putExtra("branch_name", serviceName);
+                    intent.putExtra("appType", "Photo ID");
                     startActivity(intent);
                 }
             });
