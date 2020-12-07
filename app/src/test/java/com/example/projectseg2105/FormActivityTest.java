@@ -17,7 +17,7 @@ public class FormActivityTest extends TestCase {
         assertEquals("Testing Service Submission ", "04/12/1957", DOB);
         assertEquals("Testing Service Submission ", "08/12/2020", appointment);
         assertEquals("Testing Service Submission ", "123 Main St", address);
-        assertEquals("Testing Service Submission ", "G", answer); // this should fail
+        assertEquals("Testing Service Submission ", "G2", answer);
     }
 
 }
